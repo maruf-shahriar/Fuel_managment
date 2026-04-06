@@ -1,0 +1,29 @@
+name: Deploy Laravel Application
+
+on:
+  push:
+    branches:
+      - main # Change this to your default branch if it's different (e.g., master)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }} # e.g., 192.168.1.1 or example.com
+          username: ${{ secrets.SERVER_USERNAME }} # e.g., ubuntu, root, or your cPanel username
+          key: ${{ secrets.SERVER_SSH_KEY }} # Your private SSH key
+          port: ${{ secrets.SERVER_PORT || 22 }}
+          script: |
+            # Go to your application folder
+            cd ${{ secrets.PROJECT_PATH }} # e.g., /var/www/fuelstation
+
+            # Pull the latest changes from the repository
+            git pull origin main
+

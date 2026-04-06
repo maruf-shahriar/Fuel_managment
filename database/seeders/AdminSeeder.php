@@ -15,8 +15,9 @@ class AdminSeeder extends Seeder
         // Create admin user
         User::create([
             'name' => 'Admin',
-            'email' => 'admin@fuelstation.com',
-            'password' => bcrypt('password'),
+            'mobile_number' => '01700000000',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('1234'),
             'role' => 'admin',
         ]);
 
@@ -39,11 +40,11 @@ class AdminSeeder extends Seeder
 
         // Create vehicle limits
         $limits = [
-            ['vehicle_type' => 'Motorcycle', 'max_amount' => 500, 'max_liters' => 5, 'block_days' => 3],
-            ['vehicle_type' => 'Car', 'max_amount' => 3000, 'max_liters' => 30, 'block_days' => 7],
-            ['vehicle_type' => 'CNG', 'max_amount' => 2000, 'max_liters' => 20, 'block_days' => 5],
-            ['vehicle_type' => 'Truck', 'max_amount' => 10000, 'max_liters' => 100, 'block_days' => 7],
-            ['vehicle_type' => 'Bus', 'max_amount' => 15000, 'max_liters' => 150, 'block_days' => 5],
+            ['vehicle_type' => 'Motorcycle', 'max_amount' => 500, 'block_days_per_amount' => 3],
+            ['vehicle_type' => 'Car', 'max_amount' => 3000, 'block_days_per_amount' => 7],
+            ['vehicle_type' => 'CNG', 'max_amount' => 2000, 'block_days_per_amount' => 5],
+            ['vehicle_type' => 'Truck', 'max_amount' => 10000, 'block_days_per_amount' => 7],
+            ['vehicle_type' => 'Bus', 'max_amount' => 15000, 'block_days_per_amount' => 5],
         ];
 
         foreach ($limits as $limit) {
