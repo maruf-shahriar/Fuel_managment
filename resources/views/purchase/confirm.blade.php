@@ -46,6 +46,23 @@
                         </p>
                     </div>
                 </div>
+
+                {{-- Block Days Warning --}}
+                @if($block_days > 0)
+                <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4">
+                    <div class="flex items-start gap-3">
+                        <span class="text-amber-400 text-xl">⚠️</span>
+                        <div>
+                            <p class="text-sm text-amber-400 font-semibold">Block Notice</p>
+                            <p class="text-xs text-gray-400 mt-1">
+                                এই purchase এর পর আপনি <span class="text-amber-400 font-bold">{{ $block_days }} দিন</span>
+                                <span class="text-white font-semibold">{{ $vehicle_type }}</span> vehicle type এ আর fuel কিনতে পারবেন না।
+                                অন্য vehicle type দিয়ে fuel কিনতে পারবেন।
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                @endif
             </div>
 
             {{-- Payment --}}

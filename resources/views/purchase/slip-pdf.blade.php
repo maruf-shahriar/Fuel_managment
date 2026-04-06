@@ -28,7 +28,10 @@
         </div>
 
         <div class="body">
-            <div class="slip-id">{{ $purchase->slip_id }}</div>
+            <div class="slip-id">
+                <p style="margin: 0 0 10px 0;">{{ $purchase->slip_id }}</p>
+                <img src="data:image/svg+xml;base64,{!! base64_encode(QrCode::format('svg')->size(100)->generate($purchase->slip_id)) !!}" alt="QR Code">
+            </div>
 
             <div class="row">
                 <span class="label">Customer</span>

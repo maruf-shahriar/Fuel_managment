@@ -16,8 +16,7 @@
             <tr class="border-b border-gray-800">
                 <th class="text-left py-4 px-6 text-gray-400 font-medium">Vehicle Type</th>
                 <th class="text-right py-4 px-6 text-gray-400 font-medium">Max Amount (৳)</th>
-                <th class="text-right py-4 px-6 text-gray-400 font-medium">Max Liters</th>
-                <th class="text-right py-4 px-6 text-gray-400 font-medium">Block Days</th>
+                <th class="text-right py-4 px-6 text-gray-400 font-medium">Block Days / Max Amount</th>
                 <th class="text-right py-4 px-6 text-gray-400 font-medium">Actions</th>
             </tr>
         </thead>
@@ -26,8 +25,7 @@
                 <tr class="border-b border-gray-800/50 hover:bg-gray-800/30">
                     <td class="py-4 px-6 text-white font-semibold">{{ $limit->vehicle_type }}</td>
                     <td class="py-4 px-6 text-right text-emerald-400 font-semibold">৳{{ number_format($limit->max_amount, 2) }}</td>
-                    <td class="py-4 px-6 text-right text-white">{{ $limit->max_liters }}</td>
-                    <td class="py-4 px-6 text-right text-white">{{ $limit->block_days }}</td>
+                    <td class="py-4 px-6 text-right text-amber-400 font-semibold">{{ $limit->block_days_per_amount }} দিন</td>
                     <td class="py-4 px-6 text-right space-x-2">
                         <a href="{{ route('admin.vehicle-limits.edit', $limit) }}" class="px-3 py-1.5 text-amber-400 hover:bg-amber-500/10 rounded-lg text-xs font-medium transition-all">Edit</a>
                         <form method="POST" action="{{ route('admin.vehicle-limits.destroy', $limit) }}" class="inline" onsubmit="return confirm('Delete this limit?');">
@@ -37,7 +35,7 @@
                     </td>
                 </tr>
             @empty
-                <tr><td colspan="5" class="py-8 text-center text-gray-400">No vehicle limits found.</td></tr>
+                <tr><td colspan="4" class="py-8 text-center text-gray-400">No vehicle limits found.</td></tr>
             @endforelse
         </tbody>
     </table>

@@ -23,9 +23,8 @@ class VehicleLimitController extends Controller
     {
         $validated = $request->validate([
             'vehicle_type' => 'required|string|unique:vehicle_limits,vehicle_type|max:255',
-            'max_amount' => 'required|numeric|min:0',
-            'max_liters' => 'required|numeric|min:0',
-            'block_days' => 'required|integer|min:1',
+            'max_amount' => 'required|numeric|min:1',
+            'block_days_per_amount' => 'required|numeric|min:0.01',
         ]);
 
         VehicleLimit::create($validated);
@@ -42,9 +41,8 @@ class VehicleLimitController extends Controller
     {
         $validated = $request->validate([
             'vehicle_type' => 'required|string|max:255|unique:vehicle_limits,vehicle_type,' . $vehicleLimit->id,
-            'max_amount' => 'required|numeric|min:0',
-            'max_liters' => 'required|numeric|min:0',
-            'block_days' => 'required|integer|min:1',
+            'max_amount' => 'required|numeric|min:1',
+            'block_days_per_amount' => 'required|numeric|min:0.01',
         ]);
 
         $vehicleLimit->update($validated);

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -27,6 +28,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 
 // Authenticated user routes
 Route::middleware('auth')->group(function () {
+    // Profile
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+
     // Purchase flow
     Route::get('/purchase', [PurchaseController::class, 'selectFuel'])->name('purchase.select-fuel');
     Route::post('/purchase/vehicle-info', [PurchaseController::class, 'vehicleInfo'])->name('purchase.vehicle-info');
@@ -64,6 +70,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/purchases', [AdminPurchaseController::class, 'index'])->name('purchases.index');
     Route::get('/purchases/{purchase}', [AdminPurchaseController::class, 'show'])->name('purchases.show');
     Route::patch('/purchases/{purchase}/collect', [AdminPurchaseController::class, 'markCollected'])->name('purchases.collect');
+    Route::post('/purchases/collect-by-slip', [AdminPurchaseController::class, 'collectBySlipId'])->name('purchases.collect-by-slip');
 
     // Vehicle Limits
     Route::get('/vehicle-limits', [VehicleLimitController::class, 'index'])->name('vehicle-limits.index');

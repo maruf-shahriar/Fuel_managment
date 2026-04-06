@@ -25,7 +25,10 @@
             <div class="p-8 space-y-6">
                 <div class="text-center pb-6 border-b border-gray-800">
                     <p class="text-sm text-gray-400">Slip ID</p>
-                    <p class="text-2xl font-bold text-white tracking-wider">{{ $purchase->slip_id }}</p>
+                    <p class="text-2xl font-bold text-white tracking-wider mb-4">{{ $purchase->slip_id }}</p>
+                    <div class="inline-block bg-white p-2 rounded-lg">
+                        {!! QrCode::size(120)->generate($purchase->slip_id) !!}
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-6">

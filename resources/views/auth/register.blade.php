@@ -25,6 +25,13 @@
                 </div>
 
                 <div>
+                    <label for="mobile_number" class="block text-sm font-medium text-gray-300 mb-2">Mobile Number</label>
+                    <input type="text" name="mobile_number" id="mobile_number" value="{{ old('mobile_number') }}" required
+                           class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-xl text-white placeholder-gray-500
+                                  focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all">
+                </div>
+
+                <div>
                     <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email</label>
                     <input type="email" name="email" id="email" value="{{ old('email') }}" required
                            class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-xl text-white placeholder-gray-500
